@@ -72,6 +72,13 @@ function App() {
 
     return (
         <svg viewBox={`0 0 ${size.width} ${size.height}`}>
+            <g ref={xAxis} className='x axis' transform={`translate(0,${size.height - size.margin})`} />
+            <g ref={yAxis} className='y axis' transform={`translate(${size.margin},0)`} />
+                {/*
+                    There two container are used to render X axis and Y axis.
+                    Define position using transform.
+                    Define the useRef so that we can select them using d3 and then call d3.axis() in a useEffect HOOK.
+                */}
             {intId >= 0 ? <Cursor yrange={scale.y.range()} position={scale.x(intId)} /> : null} 
                 {/* 
                     Define the cursor first, then it is rendered at the bottom layer in the page.
@@ -91,13 +98,6 @@ function App() {
                 {/*
                     Pass data, scale, and index of hovered circle to Label component to render the legend.
                     Uncomment this to show the legend panel. (You don't need to write code on this component.)
-                */}
-            <g ref={xAxis} className='x axis' transform={`translate(0,${size.height - size.margin})`} />
-            <g ref={yAxis} className='y axis' transform={`translate(${size.margin},0)`} />
-                {/*
-                    There two container are used to render X axis and Y axis.
-                    Define position using transform.
-                    Define the useRef so that we can select them using d3 and then call d3.axis() in a useEffect HOOK.
                 */}
         </svg>
     );
