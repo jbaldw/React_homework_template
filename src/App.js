@@ -33,7 +33,7 @@ function App() {
     const [objData, setData] = useState(GenData);
     /*
         Initialize data.
-        Think: If we want to update the data during the application (with out refresh the page), what should we do?
+        THINKING: If we want to update the data during the application (with out refresh the page), what should we do?
     */
     const [intId, setId] = useState(-1);
     /*
@@ -84,6 +84,7 @@ function App() {
                     Define the cursor first, then it is rendered at the bottom layer in the page.
                     If intId < 0, which means no circle is hovered, we don't render the cursor.
                     Only pass the position information to the cursor component.
+                    THINKING: If we want the cursor moving with the mouse, how should we modify the code?
                 */}
             <Lines data={objData} scale={scale} />
                 {/*
