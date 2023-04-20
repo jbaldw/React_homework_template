@@ -64,8 +64,8 @@ function App() {
         /*
         *************************************************************
         * write code here to create X axis and Y axis using d3      *
-        *   d3.select(xAxis.current)...                             *
-        *   d3.select(yAxis.current)...                             *
+        *   d3.select(xAxis.current).call(...)                      *
+        *   d3.select(yAxis.current).call(...)                      *
         *************************************************************
         */
     });
