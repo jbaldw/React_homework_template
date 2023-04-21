@@ -33,7 +33,7 @@ function App() {
     const [objData, setData] = useState(GenData);
     /*
         Initialize data.
-        Think: If we want to update the data during the application (with out refresh the page), what should we do?
+        THINKING: If we want to update the data during the application (with out refresh the page), what should we do?
     */
     const [intId, setId] = useState(-1);
     /*
@@ -64,19 +64,27 @@ function App() {
         /*
         *************************************************************
         * write code here to create X axis and Y axis using d3      *
-        *   d3.select(xAxis.current)...                             *
-        *   d3.select(yAxis.current)...                             *
+        *   d3.select(xAxis.current).call(...)                      *
+        *   d3.select(yAxis.current).call(...)                      *
         *************************************************************
         */
     });
 
     return (
         <svg viewBox={`0 0 ${size.width} ${size.height}`}>
+            <g ref={xAxis} className='x axis' transform={`translate(0,${size.height - size.margin})`} />
+            <g ref={yAxis} className='y axis' transform={`translate(${size.margin},0)`} />
+                {/*
+                    There two container are used to render X axis and Y axis.
+                    Define position using transform.
+                    Define the useRef so that we can select them using d3 and then call d3.axis() in a useEffect HOOK.
+                */}
             {intId >= 0 ? <Cursor yrange={scale.y.range()} position={scale.x(intId)} /> : null} 
                 {/* 
                     Define the cursor first, then it is rendered at the bottom layer in the page.
                     If intId < 0, which means no circle is hovered, we don't render the cursor.
                     Only pass the position information to the cursor component.
+                    THINKING: If we want the cursor moving with the mouse, how should we modify the code?
                 */}
             <Lines data={objData} scale={scale} />
                 {/*
@@ -91,13 +99,6 @@ function App() {
                 {/*
                     Pass data, scale, and index of hovered circle to Label component to render the legend.
                     Uncomment this to show the legend panel. (You don't need to write code on this component.)
-                */}
-            <g ref={xAxis} className='x axis' transform={`translate(0,${size.height - size.margin})`} />
-            <g ref={yAxis} className='y axis' transform={`translate(${size.margin},0)`} />
-                {/*
-                    There two container are used to render X axis and Y axis.
-                    Define position using transform.
-                    Define the useRef so that we can select them using d3 and then call d3.axis() in a useEffect HOOK.
                 */}
         </svg>
     );
