@@ -1,7 +1,7 @@
 function Circle({ data, scale, label, hover }) {
     return (
         <g>
-            {data.map((d, i) => <circle key={i} />)}
+            {data.map((d, i) => <circle key={i} cx={scale.x(i)} cy={scale.y(d)} r='6' fill='red' onMouseOver={hover(i)} onMouseOut={hover(-1)}  />)}
             {/*
                 *************************************************************************************************************************************************
                 * data is the array for a specific key.                                                                                                         *

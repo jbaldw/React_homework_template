@@ -1,18 +1,10 @@
 import * as d3 from 'd3';
 
 function Line({ data, scale, label }) {
-    /*
-        *********************************************************************
-        * Define the line using d3.line() for the single line.              *
-        * Applying x scale and y scale completes the following code         *
-        *   const path = d3.line()                                          *
-        *       .x(...)                                                     *
-        *       .y(...)                                                     *
-        *       (data);                                                     *
-        * *******************************************************************
-    */
+    const path = d3.line().x((d, i) => scale.x(i)).y(d => scale.y(d))(data);
+
     return (
-        <path />
+        <path d={path} stroke={scale.c(label)} fill='none' strokeWidth='2' />
         /*
             *****************************************************************************************
             * Define the line with the following attributes                                         *

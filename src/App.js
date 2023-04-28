@@ -61,13 +61,8 @@ function App() {
     */
 
     useEffect(() => {
-        /*
-        *************************************************************
-        * write code here to create X axis and Y axis using d3      *
-        *   d3.select(xAxis.current).call(...)                      *
-        *   d3.select(yAxis.current).call(...)                      *
-        *************************************************************
-        */
+        d3.select(xAxis.current).call(d3.axisBottom(scale.x));
+        d3.select(yAxis.current).call(d3.axisLeft(scale.y));
     });
 
     return (
